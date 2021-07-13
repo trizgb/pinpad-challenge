@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react'
 import Container from './components/Container'
+import Row from './components/Row'
 import Button from './components/Button'
 import Display from './components/Display'
 import Text from './components/Text'
@@ -11,6 +12,7 @@ const App: FC = () => {
   const [ pinCode, setPinCode ] = useState<string[]>([])
   const [ displayPinCode, setDisplayPinCode ] = useState('')
   const [ feedback, setFeedback ] = useState('Enter your PIN Code')
+  const [ attempts, setAttempts ] = useState(0)
 
   const handlePinCode = (value: string) => {
     const nextValues = [...pinCode, value].slice(0, 4)
@@ -22,44 +24,53 @@ const App: FC = () => {
 
   useEffect(() => {
     if (displayPinCode.length === 4) {
-
       if (displayPinCode !== pinCodeMock) {
         setFeedback('Incorrect PIN Code 🔴')
         setPinCode([])
         setDisplayPinCode('')
+        setAttempts(attempts + 1)
       }
 
       if (displayPinCode === pinCodeMock) {
         setFeedback('Correct PIN Code ✅')
         setPinCode([])
         setDisplayPinCode('')
+        setAttempts(0)
       }
     }
-  }, [ displayPinCode ])
+
+    if(attempts >= 3) {
+      setFeedback('Locked 🟡')
+
+      // intervalo de tiempo de 30s, despues setAttempts(0)
+    }
+  }, [ displayPinCode, attempts ])
+
+  console.log(attempts)
 
   return (
     <main style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Container>
         <Text styles={{ textAlign: 'center', marginBottom: 30 }}>{feedback}</Text>
-        <Display styles={{ marginBottom: 30 }}>{formatTextWithAsterisk(displayPinCode)}</Display>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', marginBottom: 20 }}>
+        <Display styles={{ marginBottom: 30 }} isHidden={attempts >= 3}>{formatTextWithAsterisk(displayPinCode)}</Display>
+        <Row isHidden={attempts >= 3}>
           <Button onClick={handlePinCode.bind(undefined, '1')}>1</Button>
           <Button onClick={handlePinCode.bind(undefined, '2')}>2</Button>
           <Button onClick={handlePinCode.bind(undefined, '3')}>3</Button>
-        </div>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', marginBottom: 20 }}>
+        </Row>
+        <Row isHidden={attempts >= 3}>
           <Button onClick={handlePinCode.bind(undefined, '4')}>4</Button>
           <Button onClick={handlePinCode.bind(undefined, '5')}>5</Button>
           <Button onClick={handlePinCode.bind(undefined, '6')}>6</Button>
-        </div>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', marginBottom: 20 }}>
+        </Row>
+        <Row isHidden={attempts >= 3}>
           <Button onClick={handlePinCode.bind(undefined, '7')}>7</Button>
           <Button onClick={handlePinCode.bind(undefined, '8')}>8</Button>
           <Button onClick={handlePinCode.bind(undefined, '9')}>9</Button>
-        </div>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+        </Row>
+        <Row styles={{ justifyContent: 'center', marginBottom: 0 }} isHidden={attempts >= 3}>
           <Button onClick={handlePinCode.bind(undefined, '0')}>0</Button>
-        </div>
+        </Row>
       </Container>
     </main>
   )

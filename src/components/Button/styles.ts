@@ -4,8 +4,8 @@ import { Props } from './'
 export default styled.button<Props>`
   outline: none;
   border: none;
-  height: 45px;
-  width: 45px;
+  height: 50px;
+  width: 50px;
   padding: 0;
   border-radius: 100%;
   display: flex;
