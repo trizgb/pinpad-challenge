@@ -2,11 +2,9 @@ import { FC } from 'react'
 import { BaseProps } from '../../models/base-props'
 import Styled from './styles'
 
-export interface Props extends BaseProps {
-  value?: any
-}
+export type Props = BaseProps
 
-const Input: FC<Props> = ({ children, className, styles, isHidden, value }) => {
+const Display: FC<Props> = ({ children, className, styles, isHidden }) => {
   if (isHidden) return null
 
   return (
@@ -14,4 +12,4 @@ const Input: FC<Props> = ({ children, className, styles, isHidden, value }) => {
   )
 }
 
-export default Input
+export default Display

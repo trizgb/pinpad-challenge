@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Props } from './'
+import { Props } from '.'
 
 export default styled.div<Props>`
   outline: none;
@@ -11,6 +11,7 @@ export default styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: default;
 
   ${({ styles }) => ({ ...styles })}
 `
