@@ -12,6 +12,6 @@ For this challenge different technologies were used:
 
 ## Steps to build, deploy and test the app
 
-`npm install` to install the app
-`npm start` runs the app
-`npm test` runs the tests
+- `npm install` to install the app
+- `npm start` runs the app
+- `npm test` runs the tests
