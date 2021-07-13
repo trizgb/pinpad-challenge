@@ -14,4 +14,4 @@ For this challenge different technologies were used:
 
 - `npm install` to install the app
 - `npm start` runs the app
--`npm test` runs the tests
+- `npm test` runs the tests
