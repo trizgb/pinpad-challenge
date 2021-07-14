@@ -6,6 +6,6 @@ module.exports = {
   testMatch: ['**/src/**/test.ts*'],
   collectCoverageFrom: [
     '**/src/components/**',
-    '**/src/hooks/**'
+    '**/src/helpers/**'
   ]
 }

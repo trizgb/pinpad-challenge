@@ -1,14 +1,14 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { BaseProps } from '../../models/base-props'
 import Styled from './styles'
 
 export type Props = BaseProps
 
-const Text: FC<Props> = ({ children, className, styles, isHidden }) => {
+const Text: FC<Props> = ({ children, className, styles, isHidden, testId }) => {
   if (isHidden) return null
 
   return (
-    <Styled className={className} style={styles}>{children}</Styled>
+    <Styled className={className} style={styles} data-testid={testId}>{children}</Styled>
   )
 }
 
