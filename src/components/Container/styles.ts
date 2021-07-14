@@ -5,11 +5,11 @@ export default styled.section<Props>`
   padding: 30px;
   margin: 0;
   width: 220px;
-  height: 390px;
+  min-height: 390px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #DEDEDECC;
+  background: #F5F5F5;
 
   ${({ styles }) => ({ ...styles })}
 `

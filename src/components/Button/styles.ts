@@ -12,15 +12,16 @@ export default styled.button<Props>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background: #F5F5F5;
+  background: #E8E8E8;
+  font-size: 18px;
 
   ${({ styles }) => ({ ...styles })}
 
   &:hover {
-    background: #BABABA;
+    background: #D9E4EC;
   }
 
   &:active {
-    background: #E8E8E8;
+    background: #B7CFDC;
   }
 `
