@@ -13,7 +13,7 @@ const App: FC = () => {
   const [ displayPinCode, setDisplayPinCode ] = useState('')
   const [ feedback, setFeedback ] = useState('Enter your PIN Code')
   const [ attempts, setAttempts ] = useState(0)
-  const [ timeLeft, setTimeLeft ] = useState(10)
+  const [ timeLeft, setTimeLeft ] = useState(30)
 
   const handlePinCode = (value: string) => {
     const nextValues = [...pinCode, value].slice(0, 4)
@@ -25,13 +25,11 @@ const App: FC = () => {
 
   const resetPinPad = () => {
     setAttempts(0)
-    setTimeLeft(10)
+    setTimeLeft(30)
+    setPinCode([])
+    setDisplayPinCode('')
     setFeedback('Enter your PIN Code')
   }
-
-  useEffect(() => {
-    if (!timeLeft || !attempts) resetPinPad()
-  }, [ timeLeft, attempts ])
 
   useEffect(() => {
     if (displayPinCode.length === 4) {
@@ -39,7 +37,7 @@ const App: FC = () => {
         setFeedback('Incorrect PIN Code 🔴')
         setPinCode([])
         setDisplayPinCode('')
-        if (attempts < 3) setAttempts(attempts + 1)
+        setAttempts(attempts + 1)
       }
 
       if (displayPinCode === pinCodeMock) {
@@ -50,6 +48,10 @@ const App: FC = () => {
       }
     }
   }, [ displayPinCode, attempts ])
+
+  useEffect(() => {
+    if (!timeLeft) resetPinPad()
+  }, [ timeLeft ])
 
   useEffect(() => {
     if (!timeLeft) return
